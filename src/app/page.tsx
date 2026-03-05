@@ -41,31 +41,44 @@ const imageVariants: any = {
 export default function Home() {
   const courses = [
     {
+      title: "Data Science Essentials",
+      author: "Dr. Liam Morgan",
+      duration: "25h 30min",
+      lessons: 12,
+      rating: 4.6,
+      level: "Advanced",
+      price: "$299.99",
+      image: "https://framerusercontent.com/images/4wat1wJFOMZsUFXZIgWayB7eC1o.jpg"
+    },
+    {
+      title: "Digital Marketing Pro",
+      author: "Alex Reveira",
+      duration: "18h 45min",
+      lessons: 10,
+      rating: 4.5,
+      level: "Intermediate",
+      price: "$199.99",
+      image: "https://framerusercontent.com/images/EEFT5idD5Z7l17UKEyR1ls1NaWg.png"
+    },
+    {
+      title: "UI/UX Design Essentials",
+      author: "Dr. Michael Lee",
+      duration: "25h 30min",
+      lessons: 28,
+      rating: 4.7,
+      level: "Beginner",
+      price: "$99.99",
+      image: "https://framerusercontent.com/images/IrKryFvOruxPxLkGeTjrbmh9k.png"
+    },
+    {
       title: "Creative Writing Bootcamp",
       author: "Desmond Andrade",
       duration: "5h 30min",
       lessons: 6,
       rating: 4.9,
       level: "Beginner",
-      levelClass: "beginner",
-    },
-    {
-      title: "Product Design Bootcamp",
-      author: "Dr. Michael Lee",
-      duration: "25h 30min",
-      lessons: 33,
-      rating: 4.3,
-      level: "Advanced",
-      levelClass: "advanced",
-    },
-    {
-      title: "Digital Marketing Mastery",
-      author: "Alex Reveira",
-      duration: "15h 35min",
-      lessons: 40,
-      rating: 4.4,
-      level: "Beginner",
-      levelClass: "beginner",
+      price: "$49.99",
+      image: "https://framerusercontent.com/images/2Egur2fNYRGPeQKUmUX2PoOqxM.png"
     },
     {
       title: "Video Editing Masterclass",
@@ -74,7 +87,8 @@ export default function Home() {
       lessons: 32,
       rating: 4.8,
       level: "Intermediate",
-      levelClass: "intermediate",
+      price: "$129.99",
+      image: "https://framerusercontent.com/images/JwvWXTcWORlFsJWV5F76T3P5ZE.png"
     },
     {
       title: "Photo manipulation",
@@ -83,16 +97,8 @@ export default function Home() {
       lessons: 24,
       rating: 4.7,
       level: "Beginner",
-      levelClass: "beginner",
-    },
-    {
-      title: "Data Science Essentials",
-      author: "Dr. Liam Morgan",
-      duration: "25h 30min",
-      lessons: 12,
-      rating: 4.6,
-      level: "Advanced",
-      levelClass: "advanced",
+      price: "$49.99",
+      image: "https://framerusercontent.com/images/5cM0zunAJOzPyUrrbVXggN5sTw.png"
     }
   ];
 
@@ -163,8 +169,8 @@ export default function Home() {
           </motion.p>
 
           <motion.div variants={itemVariants}>
-            <Link href="/courses" className="btn-primary" style={{ fontSize: '18px', padding: '16px 36px', height: '60px' }}>
-              Explore Courses <ArrowUpRight size={24} />
+            <Link href="/courses" className="btn-primary group" style={{ fontSize: '18px', padding: '16px 36px', height: '60px' }}>
+              Explore Courses <ArrowUpRight className="transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1" size={24} />
             </Link>
           </motion.div>
         </motion.div>
@@ -176,11 +182,13 @@ export default function Home() {
           initial="hidden" whileInView="visible" viewport={{ once: true }} variants={containerVariants}
         >
           <motion.p variants={itemVariants} style={{ textAlign: 'center', fontWeight: '600', marginBottom: '24px' }}>Our Valued Partners</motion.p>
-          <motion.div className="partners-banner" variants={itemVariants}>
-            {partners.map((src, i) => (
-              <img key={i} src={src} alt="partner logo" />
-            ))}
-          </motion.div>
+          <div className="partners-banner-wrapper">
+            <motion.div className="partners-banner" variants={itemVariants}>
+              {[...partners, ...partners, ...partners].map((src, i) => (
+                <img key={i} src={src} alt="partner logo" />
+              ))}
+            </motion.div>
+          </div>
         </motion.div>
       </section>
 
@@ -211,7 +219,7 @@ export default function Home() {
             </motion.div>
 
             <motion.div className="card" style={{ padding: '40px', textAlign: 'center', alignItems: 'center' }} variants={itemVariants}>
-              <img src="https://framerusercontent.com/images/WiU5lbahsjWy5BCMq7zgElUv9aE.png" alt="Learn by doing" style={{ width: '80px', height: '80px', objectFit: 'cover', clipPath: 'polygon(50% 0%, 65% 15%, 100% 15%, 85% 50%, 100% 85%, 65% 85%, 50% 100%, 35% 85%, 0% 85%, 15% 50%, 0% 15%, 35% 15%)', marginBottom: '24px' }} />
+              <img src="https://framerusercontent.com/images/WiU5lbahsjWy5BCMq7zgElUv9aE.png" alt="Learn by doing" style={{ width: '80px', height: '80px', objectFit: 'cover', marginBottom: '24px' }} />
               <h3 className="heading-md" style={{ marginBottom: '16px' }}>Learn-by-Doing</h3>
               <p className="text-secondary">Interactive lessons that encourage you to apply concepts immediately, reinforcing practical real-world skills.</p>
             </motion.div>
@@ -229,44 +237,48 @@ export default function Home() {
 
           <motion.div className="grid-3" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={containerVariants}>
             {courses.map((course, i) => (
-              <motion.div key={i} className="card" variants={itemVariants}>
-                <div style={{ padding: '12px 12px 0 12px' }}>
-                  <div style={{
-                    height: '240px',
-                    backgroundImage: `url(/course.png)`,
-                    backgroundSize: 'cover',
-                    backgroundPosition: 'center',
-                    backgroundRepeat: 'no-repeat',
-                    borderRadius: '16px',
-                    position: 'relative'
-                  }}>
-                    <span className={`pill ${course.levelClass}`} style={{ position: 'absolute', top: '16px', left: '16px' }}>
+              <motion.div key={i} className="card" variants={itemVariants} style={{ padding: 0 }}>
+                <div className="course-card-img-wrapper">
+                  <div className="course-card-img" style={{ backgroundImage: `url(${course.image})` }}>
+                    <span className="course-card-pill">
                       {course.level}
                     </span>
                   </div>
                 </div>
 
-                <div style={{ padding: '24px 32px 32px 32px', display: 'flex', flexDirection: 'column', flex: 1 }}>
+                <div style={{ padding: '24px', display: 'flex', flexDirection: 'column', flex: 1 }}>
                   <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '16px' }}>
-                    <span style={{ display: 'flex', alignItems: 'center', gap: '6px', fontWeight: '600', color: 'var(--text-primary)' }}>
-                      <img src="https://framerusercontent.com/images/fQ2ylb2KWJLf8OxPxleejKefWM.svg" width={16} alt="star" /> {course.rating}
+                    <span style={{ display: 'flex', alignItems: 'center', gap: '6px', fontSize: '14px', color: 'var(--text-secondary)' }}>
+                      <span style={{ color: '#ffc107', display: 'flex', gap: '2px' }}>
+                        <Star size={14} fill="currentColor" color="currentColor" />
+                        <Star size={14} fill="currentColor" color="currentColor" />
+                        <Star size={14} fill="currentColor" color="currentColor" />
+                        <Star size={14} fill="currentColor" color="currentColor" />
+                        <Star size={14} fill="currentColor" color="currentColor" />
+                      </span>
+                      ({course.rating})
                     </span>
-                    <span style={{ fontWeight: '700', fontSize: '20px', color: 'var(--primary)' }}>$49.99</span>
+                    <span style={{ fontWeight: '700', fontSize: '18px', color: 'var(--text-primary)' }}>{course.price}</span>
                   </div>
-                  <h3 className="heading-md" style={{ marginBottom: '12px', fontSize: '22px' }}>{course.title}</h3>
-                  <p className="text-secondary" style={{ marginBottom: '28px', fontSize: '15px' }}>
-                    By <Link href="#" className="text-primary" style={{ fontWeight: '600' }}>{course.author}</Link>
+
+                  <h3 className="heading-md" style={{ marginBottom: '8px', fontSize: '20px' }}>{course.title}</h3>
+                  <p className="text-secondary" style={{ marginBottom: '24px', fontSize: '14px' }}>
+                    By {course.author}
                   </p>
 
-                  <div style={{ marginTop: 'auto', display: 'flex', justifyContent: 'space-between', alignItems: 'center', borderTop: '1px solid var(--border-color)', paddingTop: '24px' }}>
-                    <div className="text-secondary" style={{ display: 'flex', gap: '16px', fontSize: '14px', fontWeight: '500' }}>
-                      <span>{course.duration}</span>
-                      <span style={{ display: 'flex', alignItems: 'center', gap: '4px' }}>
-                        <span style={{ width: '4px', height: '4px', borderRadius: '50%', background: 'currentColor' }}></span>
-                        {course.lessons} Lessons
-                      </span>
-                    </div>
-                    <Link href={`/courses/${course.title.toLowerCase().replace(/ /g, '-')}`} className="btn-secondary" style={{ padding: '10px 20px', fontSize: '14px' }}>
+                  <div className="text-secondary" style={{ display: 'flex', gap: '20px', fontSize: '14px', fontWeight: '500', marginBottom: '24px' }}>
+                    <span style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10" /><polyline points="12 6 12 12 16 14" /></svg>
+                      {course.duration}
+                    </span>
+                    <span style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10" /><polyline points="12 6 12 12 16 14" /></svg>
+                      {course.lessons}
+                    </span>
+                  </div>
+
+                  <div style={{ marginTop: 'auto' }}>
+                    <Link href={`/courses/${course.title.toLowerCase().replace(/ /g, '-')}`} className="btn-card">
                       View Course
                     </Link>
                   </div>
@@ -277,8 +289,8 @@ export default function Home() {
 
           <motion.div style={{ textAlign: 'center', marginTop: '80px' }} initial="hidden" whileInView="visible" viewport={{ once: true }} variants={containerVariants}>
             <motion.div variants={itemVariants}>
-              <Link href="/courses" className="btn-primary" style={{ padding: '14px 32px' }}>
-                All Courses <ArrowUpRight size={20} />
+              <Link href="/courses" className="btn-primary group" style={{ padding: '14px 32px' }}>
+                All Courses <ArrowUpRight className="transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1" size={20} />
               </Link>
             </motion.div>
           </motion.div>
@@ -326,7 +338,7 @@ export default function Home() {
         <div className="container">
           <motion.div className="split-2" initial="hidden" whileInView="visible" viewport={{ once: true }} variants={containerVariants}>
             <motion.div variants={itemVariants} style={{ position: 'relative' }}>
-              <img src="https://framerusercontent.com/images/8136BY6iSEiQiFS0aGhF7iJslo.png" alt="student" style={{ width: '100%', maxWidth: '500px', margin: '0 auto', display: 'block', clipPath: 'polygon(50% 0%, 65% 15%, 100% 15%, 85% 50%, 100% 85%, 65% 85%, 50% 100%, 35% 85%, 0% 85%, 15% 50%, 0% 15%, 35% 15%)' }} />
+              <img src="https://framerusercontent.com/images/8136BY6iSEiQiFS0aGhF7iJslo.png" alt="student" style={{ width: '100%', maxWidth: '500px', margin: '0 auto', display: 'block' }} />
             </motion.div>
             <motion.div variants={itemVariants}>
               <h2 className="heading-lg" style={{ marginBottom: '32px' }}>
@@ -424,8 +436,8 @@ export default function Home() {
             <p className="text-secondary" style={{ marginBottom: '40px', fontSize: '18px' }}>
               Join thousands of learners worldwide entirely unlocking their potential via our curated learning pathways.
             </p>
-            <Link href="/courses" className="btn-primary" style={{ padding: '16px 32px', fontSize: '18px' }}>
-              Explore Courses <ArrowUpRight size={20} />
+            <Link href="/courses" className="btn-primary group" style={{ padding: '16px 32px', fontSize: '18px' }}>
+              Explore Courses <ArrowUpRight className="transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1" size={20} />
             </Link>
           </motion.div>
         </motion.div>

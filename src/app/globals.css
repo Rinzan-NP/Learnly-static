@@ -1,3 +1,7 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 :root {
   --primary: #F25D1D;
   --primary-hover: #e04b0c;
@@ -81,6 +85,14 @@ button {
 
 .btn-primary:hover {
   background-color: var(--primary-hover);
+}
+
+.btn-primary .arrow {
+  transition: transform 0.2s ease;
+}
+
+.btn-primary:hover .arrow {
+  transform: translate(3px, -3px);
 }
 
 .btn-secondary {
@@ -168,6 +180,53 @@ button {
   color: #4b6bfb;
 }
 
+.course-card-img-wrapper {
+  padding: 16px 16px 0 16px;
+}
+
+.course-card-img {
+  height: 220px;
+  background-color: #f1f1f1;
+  border-radius: 12px;
+  background-size: cover;
+  background-position: center;
+  position: relative;
+}
+
+.course-card-pill {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  background: white;
+  color: var(--text-primary);
+  padding: 8px 16px;
+  border-radius: 9999px;
+  font-size: 12px;
+  font-weight: 500;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+}
+
+.btn-card {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  padding: 14px;
+  border: 1px solid var(--border-color);
+  border-radius: 9999px;
+  font-weight: 600;
+  font-size: 15px;
+  color: var(--text-primary);
+  background: transparent;
+  transition: all 0.2s;
+}
+
+.btn-card:hover {
+  background: var(--primary);
+  color: white;
+  border-color: var(--primary);
+}
+
 .section-padding {
   padding: 80px 0;
 }
@@ -209,19 +268,38 @@ button {
   }
 }
 
+@keyframes marquee {
+  0% {
+    transform: translateX(0%);
+  }
+
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.partners-banner-wrapper {
+  overflow: hidden;
+  white-space: nowrap;
+  width: 100%;
+  position: relative;
+  -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+  mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+}
+
 .partners-banner {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
+  display: inline-flex;
+  width: max-content;
   align-items: center;
-  gap: 40px;
+  gap: 60px;
   padding: 40px 0;
   border-top: 1px solid var(--border-color);
   opacity: 0.6;
+  animation: marquee 30s linear infinite;
 }
 
 .partners-banner img {
-  height: 32px;
+  height: 36px;
   object-fit: contain;
 }
 
@@ -387,7 +465,6 @@ button {
   aspect-ratio: 1;
   object-fit: cover;
   z-index: 1;
-  clip-path: polygon(50% 0%, 65% 15%, 100% 15%, 85% 50%, 100% 85%, 65% 85%, 50% 100%, 35% 85%, 0% 85%, 15% 50%, 0% 15%, 35% 15%);
   display: none;
 }
 
