@@ -1,12 +1,12 @@
 import Link from 'next/link'
-import { Hexagon, ChevronDown } from 'lucide-react'
+import { Rocket, ChevronDown } from 'lucide-react'
 
 export default function Navbar() {
     return (
         <nav className="navbar">
             <div className="container navbar-inner">
                 <Link href="/" className="logo">
-                    <Hexagon className="logo-icon" fill="currentColor" />
+                    <Rocket className="logo-icon" fill="currentColor" size={28} />
                     <span>Learnly</span>
                 </Link>
                 <div className="nav-links">

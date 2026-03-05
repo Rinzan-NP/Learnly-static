@@ -1,7 +1,7 @@
 "use client";
 
 import Link from 'next/link'
-import { ArrowUpRight, Star } from 'lucide-react'
+import { ArrowUpRight, Star, Clock, BookOpen, CheckCircle2 } from 'lucide-react'
 import { motion } from 'framer-motion'
 import Image from 'next/image'
 
@@ -122,25 +122,35 @@ export default function Home() {
       <section className="hero">
         <div className="hero-bg-grid"></div>
 
-        {/* Left Hero Image */}
-        <motion.img
-          src="https://framerusercontent.com/images/8136BY6iSEiQiFS0aGhF7iJslo.png"
-          alt="Student holding a book"
-          className="hero-img-left"
+        {/* Left Hero Image Container */}
+        <motion.div
+          className="hero-img-container hero-img-left"
           initial="hidden"
           animate="visible"
           variants={imageVariants}
-        />
+        >
+          <div className="hero-img-bg bg-[#FFF0E8]"></div>
+          <img
+            src="https://framerusercontent.com/images/4wat1wJFOMZsUFXZIgWayB7eC1o.jpg"
+            alt="Students looking at laptop"
+            className="hero-img-masked mask-left"
+          />
+        </motion.div>
 
-        {/* Right Hero Image */}
-        <motion.img
-          src="https://framerusercontent.com/images/WiU5lbahsjWy5BCMq7zgElUv9aE.png"
-          alt="Student with headphones"
-          className="hero-img-right"
+        {/* Right Hero Image Container */}
+        <motion.div
+          className="hero-img-container hero-img-right"
           initial="hidden"
           animate="visible"
           variants={imageVariants}
-        />
+        >
+          <div className="hero-img-bg bg-[#E7F0FF]"></div>
+          <img
+            src="https://framerusercontent.com/images/2Egur2fNYRGPeQKUmUX2PoOqxM.png"
+            alt="Students collaborating"
+            className="hero-img-masked mask-right"
+          />
+        </motion.div>
 
         <motion.div
           className="container hero-content"
@@ -239,44 +249,31 @@ export default function Home() {
             {courses.map((course, i) => (
               <motion.div key={i} className="card" variants={itemVariants} style={{ padding: 0 }}>
                 <div className="course-card-img-wrapper">
-                  <div className="course-card-img" style={{ backgroundImage: `url(${course.image})` }}>
-                    <span className="course-card-pill">
-                      {course.level}
-                    </span>
+                  <div
+                    className="course-card-img"
+                    style={{ backgroundImage: `url(${course.image})` }}
+                  >
+                    <div className="course-card-pill">{course.level}</div>
                   </div>
                 </div>
-
-                <div style={{ padding: '24px', display: 'flex', flexDirection: 'column', flex: 1 }}>
+                <div style={{ padding: '24px', flex: 1, display: 'flex', flexDirection: 'column' }}>
                   <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '16px' }}>
-                    <span style={{ display: 'flex', alignItems: 'center', gap: '6px', fontSize: '14px', color: 'var(--text-secondary)' }}>
-                      <span style={{ color: '#ffc107', display: 'flex', gap: '2px' }}>
-                        <Star size={14} fill="currentColor" color="currentColor" />
-                        <Star size={14} fill="currentColor" color="currentColor" />
-                        <Star size={14} fill="currentColor" color="currentColor" />
-                        <Star size={14} fill="currentColor" color="currentColor" />
-                        <Star size={14} fill="currentColor" color="currentColor" />
-                      </span>
-                      ({course.rating})
-                    </span>
-                    <span style={{ fontWeight: '700', fontSize: '18px', color: 'var(--text-primary)' }}>{course.price}</span>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '4px', fontSize: '14px', fontWeight: '600' }}>
+                      <Star size={16} fill="#FFB800" color="#FFB800" />
+                      <span>({course.rating})</span>
+                    </div>
+                    <span style={{ fontSize: '18px', fontWeight: '700', color: 'var(--text-primary)' }}>{course.price}</span>
                   </div>
-
                   <h3 className="heading-md" style={{ marginBottom: '8px', fontSize: '20px' }}>{course.title}</h3>
-                  <p className="text-secondary" style={{ marginBottom: '24px', fontSize: '14px' }}>
-                    By {course.author}
-                  </p>
-
-                  <div className="text-secondary" style={{ display: 'flex', gap: '20px', fontSize: '14px', fontWeight: '500', marginBottom: '24px' }}>
-                    <span style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
-                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10" /><polyline points="12 6 12 12 16 14" /></svg>
-                      {course.duration}
-                    </span>
-                    <span style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
-                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10" /><polyline points="12 6 12 12 16 14" /></svg>
-                      {course.lessons}
-                    </span>
+                  <p className="text-secondary" style={{ fontSize: '14px', marginBottom: '20px' }}>By {course.author}</p>
+                  <div style={{ display: 'flex', gap: '16px', marginBottom: '24px', borderTop: '1px solid #f0f0f0', paddingTop: '16px' }}>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '6px', fontSize: '13px', color: 'var(--text-secondary)' }}>
+                      <Clock size={14} /> {course.duration}
+                    </div>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '6px', fontSize: '13px', color: 'var(--text-secondary)' }}>
+                      <BookOpen size={14} /> {course.lessons} Lessons
+                    </div>
                   </div>
-
                   <div style={{ marginTop: 'auto' }}>
                     <Link href={`/courses/${course.title.toLowerCase().replace(/ /g, '-')}`} className="btn-card">
                       View Course
@@ -391,11 +388,11 @@ export default function Home() {
             {testimonials.map((test, i) => (
               <motion.div key={i} className="card" style={{ padding: '40px' }} variants={itemVariants}>
                 <div className="stars" style={{ marginBottom: '24px' }}>
-                  <img src="https://framerusercontent.com/images/fQ2ylb2KWJLf8OxPxleejKefWM.svg" width={20} alt="star" />
-                  <img src="https://framerusercontent.com/images/fQ2ylb2KWJLf8OxPxleejKefWM.svg" width={20} alt="star" />
-                  <img src="https://framerusercontent.com/images/fQ2ylb2KWJLf8OxPxleejKefWM.svg" width={20} alt="star" />
-                  <img src="https://framerusercontent.com/images/fQ2ylb2KWJLf8OxPxleejKefWM.svg" width={20} alt="star" />
-                  <img src="https://framerusercontent.com/images/fQ2ylb2KWJLf8OxPxleejKefWM.svg" width={20} alt="star" />
+                  <Star size={20} fill="#FFB800" color="#FFB800" />
+                  <Star size={20} fill="#FFB800" color="#FFB800" />
+                  <Star size={20} fill="#FFB800" color="#FFB800" />
+                  <Star size={20} fill="#FFB800" color="#FFB800" />
+                  <Star size={20} fill="#FFB800" color="#FFB800" />
                 </div>
                 <p style={{ fontSize: '16px', lineHeight: '1.6', marginBottom: '32px', flex: 1 }}>
                   "{test.review}"
