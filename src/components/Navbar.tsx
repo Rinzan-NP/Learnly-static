@@ -33,8 +33,8 @@ export default function Navbar() {
     return (
         <motion.div layoutRoot className="fixed top-0 left-0 right-0 w-full z-[1000] flex justify-center pt-3 md:pt-5 pointer-events-none px-2 md:px-0">
             <nav className="pointer-events-auto bg-white/85 backdrop-blur-xl border border-white/30 shadow-[0_8px_32px_rgba(0,0,0,0.08)] rounded-full pl-2 pr-2 md:pr-3 py-1.5 flex items-center justify-between gap-1 md:gap-2 hover:-translate-y-0.5 hover:shadow-[0_12px_40px_rgba(0,0,0,0.12)] transition-all duration-300 ease-out w-full md:w-fit max-w-[95%] flex-nowrap shrink-0">
-                <Link href="/" className="mr-0 md:mr-4 shrink-0 relative w-[130px] md:w-[180px] h-[40px] md:h-[48px] flex items-center justify-start md:justify-center overflow-hidden md:overflow-visible">
-                    <img src="/logo.png" alt="Be Campus Academy" className="absolute h-[100px] md:h-[120px] w-auto max-w-none mix-blend-multiply object-contain origin-left md:origin-center" />
+                <Link href="/" className="mr-0 md:mr-4 shrink-0 relative w-[130px] md:w-[180px] h-[40px] md:h-[48px] flex items-center justify-start md:justify-center overflow-visible">
+                    <img src="/logo.png" alt="Be Campus Academy" className="absolute h-[80px] md:h-[120px] w-auto max-w-none mix-blend-multiply object-contain origin-left md:origin-center -left-3 md:left-auto" />
                 </Link>
 
                 <div className="hidden lg:flex items-center gap-1 flex-nowrap whitespace-nowrap" onMouseLeave={() => setHoveredPath(null)}>
