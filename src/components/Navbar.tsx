@@ -2,13 +2,22 @@
 
 import Link from 'next/link'
 import { ChevronDown, Menu, X, Rocket } from 'lucide-react'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { usePathname } from 'next/navigation'
 import { motion, AnimatePresence } from 'framer-motion'
 
 export default function Navbar() {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
+    const [isScrolled, setIsScrolled] = useState(false);
     const pathname = usePathname();
+
+    useEffect(() => {
+        const handleScroll = () => {
+            setIsScrolled(window.scrollY > 10);
+        };
+        window.addEventListener('scroll', handleScroll, { passive: true });
+        return () => window.removeEventListener('scroll', handleScroll);
+    }, []);
 
     const navLinks = [
         { name: 'Home', href: '/' },
@@ -31,8 +40,15 @@ export default function Navbar() {
     const [hoveredPath, setHoveredPath] = useState<string | null>(null);
 
     return (
-        <motion.div layoutRoot className="fixed top-0 left-0 right-0 w-full z-[1000] flex justify-center pt-3 md:pt-5 pointer-events-none px-2 md:px-0">
-            <nav className="pointer-events-auto bg-white/85 backdrop-blur-xl border border-white/30 shadow-[0_8px_32px_rgba(0,0,0,0.08)] rounded-full pl-2 pr-2 md:pr-3 py-1.5 flex items-center justify-between gap-1 md:gap-2 hover:-translate-y-0.5 hover:shadow-[0_12px_40px_rgba(0,0,0,0.12)] transition-all duration-300 ease-out w-full md:w-fit max-w-[95%] flex-nowrap shrink-0">
+        <div className="fixed top-0 left-0 right-0 w-full z-[1000] flex justify-center pt-3 md:pt-5 pointer-events-none px-2 md:px-0">
+            <motion.nav
+                layout
+                className={`pointer-events-auto flex items-center justify-between gap-1 md:gap-2 transition-all duration-500 ease-in-out w-full md:w-fit max-w-[95%] flex-nowrap shrink-0 rounded-full pl-2 pr-2 md:pr-3 py-1.5 border
+                ${isScrolled
+                        ? 'bg-white/95 backdrop-blur-2xl border-white/50 shadow-[0_12px_44px_rgba(0,0,0,0.15)] py-2 md:py-2.5 scale-[0.98]'
+                        : 'bg-white/80 backdrop-blur-xl border-white/30 shadow-[0_8px_32px_rgba(0,0,0,0.08)] hover:-translate-y-0.5'
+                    }`}
+            >
                 <Link href="/" className="mr-0 md:mr-4 shrink-0 relative w-[130px] md:w-[180px] h-[40px] md:h-[48px] flex items-center justify-start md:justify-center overflow-visible">
                     <img src="/logo.png" alt="Be Campus Academy" className="absolute h-[80px] md:h-[120px] w-auto max-w-none mix-blend-multiply object-contain origin-left md:origin-center -left-3 md:left-auto" />
                 </Link>
@@ -51,14 +67,14 @@ export default function Navbar() {
                                 <motion.div
                                     layoutId="navbar-active-bg"
                                     className="absolute inset-0 bg-primary/10 rounded-full -z-10"
-                                    transition={{ type: "spring", stiffness: 380, damping: 30 }}
+                                    transition={{ type: "spring", stiffness: 400, damping: 30 }}
                                 />
                             )}
                             {hoveredPath === link.href && !isActive(link.href) && (
                                 <motion.div
                                     layoutId="navbar-hover-bg"
                                     className="absolute inset-0 bg-slate-100 rounded-full -z-10"
-                                    transition={{ type: "spring", stiffness: 380, damping: 30 }}
+                                    transition={{ type: "spring", stiffness: 400, damping: 30 }}
                                 />
                             )}
                         </Link>
@@ -75,14 +91,14 @@ export default function Navbar() {
                                 <motion.div
                                     layoutId="navbar-active-bg"
                                     className="absolute inset-0 bg-primary/10 rounded-full -z-10"
-                                    transition={{ type: "spring", stiffness: 380, damping: 30 }}
+                                    transition={{ type: "spring", stiffness: 400, damping: 30 }}
                                 />
                             )}
                             {hoveredPath === '/pages' && !pages.some(p => isActive(p.href)) && (
                                 <motion.div
                                     layoutId="navbar-hover-bg"
                                     className="absolute inset-0 bg-slate-100 rounded-full -z-10"
-                                    transition={{ type: "spring", stiffness: 380, damping: 30 }}
+                                    transition={{ type: "spring", stiffness: 400, damping: 30 }}
                                 />
                             )}
                         </div>
@@ -117,7 +133,7 @@ export default function Navbar() {
                         {isMenuOpen ? <X size={20} /> : <Menu size={20} />}
                     </button>
                 </div>
-            </nav>
+            </motion.nav>
 
             {/* Mobile Menu */}
             <AnimatePresence>
@@ -142,6 +158,6 @@ export default function Navbar() {
                     </motion.div>
                 )}
             </AnimatePresence>
-        </motion.div>
+        </div>
     )
 }
