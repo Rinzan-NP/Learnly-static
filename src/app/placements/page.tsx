@@ -40,7 +40,7 @@ export default function Placements() {
 
             <section className="section-padding bg-white">
                 <div className="container">
-                    <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '80px', alignItems: 'center' }}>
+                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-20 items-center">
                         <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={containerVariants}>
                             <h2 className="heading-lg" style={{ marginBottom: '32px' }}>100% Placement <span className="serif-italic">Assistance</span></h2>
                             <p className="text-secondary" style={{ fontSize: '18px', lineHeight: '1.8', marginBottom: '40px' }}>

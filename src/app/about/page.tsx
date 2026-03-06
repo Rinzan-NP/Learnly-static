@@ -40,7 +40,7 @@ export default function About() {
 
             <section className="section-padding bg-white">
                 <div className="container">
-                    <div style={{ display: 'grid', gridTemplateColumns: '1.2fr 1fr', gap: '80px', alignItems: 'center' }}>
+                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-20 items-center">
                         <div>
                             <h2 className="heading-lg" style={{ marginBottom: '32px' }}>Empowering Students with <br /><span className="serif-italic">Industry-Ready Skills</span></h2>
                             <p className="text-secondary" style={{ fontSize: '18px', lineHeight: '1.8', marginBottom: '24px' }}>
@@ -50,7 +50,7 @@ export default function About() {
                                 Our academy was established with a clear mission to bridge the gap between education and employment. We follow a learn–practice–perform model to ensure every student gains practical exposure.
                             </p>
 
-                            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '32px' }}>
+                            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 lg:gap-[32px]">
                                 <div className="card" style={{ padding: '32px' }}>
                                     <Target className="text-primary mb-4" size={32} />
                                     <h4 className="font-bold text-xl mb-2">Our Vision</h4>

@@ -192,7 +192,7 @@ export default function Home() {
       {/* Why Us Section */}
       <section className="section-padding" style={{ backgroundColor: 'white' }}>
         <div className="container">
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '80px', alignItems: 'center' }}>
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 md:gap-20 items-center">
             <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={containerVariants}>
               <motion.h2 className="heading-lg" variants={itemVariants} style={{ marginBottom: '24px' }}>
                 Why Do You Want to <span className="serif-italic">Join Us?</span>
@@ -269,7 +269,7 @@ export default function Home() {
             <motion.h2 className="heading-lg" style={{ textAlign: 'center', marginBottom: '60px' }} variants={itemVariants}>
               Why We Are the <span className="serif-italic">Best Training Institute</span> in Kottakkal
             </motion.h2>
-            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '40px' }}>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-10 lg:gap-[40px]">
               <div className="card" style={{ padding: '32px' }}>
                 <ul style={{ display: 'grid', gap: '20px' }}>
                   <li style={{ display: 'flex', gap: '12px' }}><CheckCircle2 className="text-primary" /> Updated curriculum as per industry trends</li>
