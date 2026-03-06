@@ -9,9 +9,9 @@ const config: Config = {
     theme: {
         extend: {
             colors: {
-                primary: "#F25D1D",
-                "primary-hover": "#e04b0c",
-                secondary: "#00A36C",
+                primary: "#E11D48",
+                "primary-hover": "#BE123C",
+                secondary: "#1E40AF",
                 "background-main": "#F2F7FF",
                 "background-card": "#FFFFFF",
                 "text-primary": "#1A1A1A",

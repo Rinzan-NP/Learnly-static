@@ -1,444 +1,416 @@
 "use client";
 
 import Link from 'next/link'
-import { ArrowUpRight, Star, Clock, BookOpen, CheckCircle2 } from 'lucide-react'
-import { motion } from 'framer-motion'
-import Image from 'next/image'
+import { ArrowUpRight, CheckCircle2, Star, Clock, BookOpen, MessageCircle, FileText, ChevronDown, Rocket } from 'lucide-react'
+import { motion, AnimatePresence } from 'framer-motion'
+import { useState } from 'react'
 
 const containerVariants: any = {
   hidden: { opacity: 0 },
   visible: {
     opacity: 1,
     transition: {
-      staggerChildren: 0.15,
+      staggerChildren: 0.1,
       delayChildren: 0.2
     }
   }
 };
 
 const itemVariants: any = {
-  hidden: { opacity: 0, y: 50 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: {
-      type: "spring", stiffness: 100, damping: 20, duration: 0.6
-    }
-  }
-};
-
-const imageVariants: any = {
-  hidden: { opacity: 0, scale: 0.8 },
-  visible: {
-    opacity: 1,
-    scale: 1,
-    transition: {
-      type: "spring", stiffness: 100, damping: 20, duration: 0.8, delay: 0.4
-    }
-  }
+  hidden: { opacity: 0, y: 30 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.6 } }
 };
 
 export default function Home() {
+  const [showBrochureModal, setShowBrochureModal] = useState(false);
+
   const courses = [
     {
-      title: "Data Science Essentials",
-      author: "Dr. Liam Morgan",
-      duration: "25h 30min",
-      lessons: 12,
-      rating: 4.6,
-      level: "Advanced",
-      price: "$299.99",
-      image: "https://framerusercontent.com/images/4wat1wJFOMZsUFXZIgWayB7eC1o.jpg"
-    },
-    {
-      title: "Digital Marketing Pro",
-      author: "Alex Reveira",
-      duration: "18h 45min",
-      lessons: 10,
-      rating: 4.5,
-      level: "Intermediate",
-      price: "$199.99",
-      image: "https://framerusercontent.com/images/EEFT5idD5Z7l17UKEyR1ls1NaWg.png"
-    },
-    {
-      title: "UI/UX Design Essentials",
-      author: "Dr. Michael Lee",
-      duration: "25h 30min",
-      lessons: 28,
-      rating: 4.7,
-      level: "Beginner",
-      price: "$99.99",
-      image: "https://framerusercontent.com/images/IrKryFvOruxPxLkGeTjrbmh9k.png"
-    },
-    {
-      title: "Creative Writing Bootcamp",
-      author: "Desmond Andrade",
-      duration: "5h 30min",
-      lessons: 6,
+      title: "AI Integrated Advanced Diploma in Digital Marketing",
+      duration: "6 Months",
+      lessons: "10+ Modules",
       rating: 4.9,
-      level: "Beginner",
-      price: "$49.99",
-      image: "https://framerusercontent.com/images/2Egur2fNYRGPeQKUmUX2PoOqxM.png"
+      level: "Professional",
+      price: "Kottakkal",
+      image: "https://framerusercontent.com/images/4wat1wJFOMZsUFXZIgWayB7eC1o.jpg",
+      description: "Learn SEO, Social Media Marketing, Google Ads, AI tools, and real-time marketing strategies."
     },
     {
-      title: "Video Editing Masterclass",
-      author: "Desmond Andrade",
-      duration: "8h 55min",
-      lessons: 32,
+      title: "Advanced Diploma in Graphic Design",
+      duration: "Professional",
+      lessons: "Creative",
       rating: 4.8,
-      level: "Intermediate",
-      price: "$129.99",
-      image: "https://framerusercontent.com/images/JwvWXTcWORlFsJWV5F76T3P5ZE.png"
+      level: "Industry Standard",
+      price: "Kottakkal",
+      image: "https://framerusercontent.com/images/IrKryFvOruxPxLkGeTjrbmh9k.png",
+      description: "Master creative design using industry-standard tools and practical projects."
     },
     {
-      title: "Photo manipulation",
-      author: "Alex Reveira",
-      duration: "5h 30min",
-      lessons: 24,
-      rating: 4.7,
-      level: "Beginner",
-      price: "$49.99",
-      image: "https://framerusercontent.com/images/5cM0zunAJOzPyUrrbVXggN5sTw.png"
+      title: "Diploma in Web Development",
+      duration: "Full Stack",
+      lessons: "Practical",
+      rating: 4.8,
+      level: "Modern Tech",
+      price: "Kottakkal",
+      image: "https://framerusercontent.com/images/EEFT5idD5Z7l17UKEyR1ls1NaWg.png",
+      description: "Learn to design and develop professional websites with modern technologies."
     }
   ];
 
-  const partners = [
-    "https://framerusercontent.com/images/PDOFpDQea3o4JKJ4otDr1C96Z8.svg",
-    "https://framerusercontent.com/images/wOIolRYjDRIOIfrt93CLz0k7M0.svg",
-    "https://framerusercontent.com/images/tnwsKDAD4QSNS9BHkcnbO1NrI.svg",
-    "https://framerusercontent.com/images/D3HegFtTzXti9udeLR0hQLLKYSI.svg",
-    "https://framerusercontent.com/images/cptg6aDzfEb35dVIpsfAnAN3bbw.svg",
-    "https://framerusercontent.com/images/YmpyeFQfpanfAj6emztFErft6Y.svg"
-  ];
-
-  const testimonials = [
-    { name: "James Patel", role: "Marketing Specialist", review: "The digital marketing course completely transformed my career path. The instructors were incredibly knowledgeable and the resources are top notch.", avatar: "https://framerusercontent.com/images/TytWPjLDhqtDYn7NeclLy1PWMs.jpg" },
-    { name: "Sarah Jenkins", role: "Product Designer", review: "The UI/UX design essentials course is amazing. Highly recommended for anyone looking to upskill rapidly in a structured way.", avatar: "https://framerusercontent.com/images/TytWPjLDhqtDYn7NeclLy1PWMs.jpg" },
-    { name: "Michael Chang", role: "Data Analyst", review: "Great depth in the data science essentials. I learned so much more than I expected and the community is super helpful.", avatar: "https://framerusercontent.com/images/TytWPjLDhqtDYn7NeclLy1PWMs.jpg" }
+  const whyJoin = [
+    "Industry-oriented syllabus",
+    "100% practical & hands-on training",
+    "Experienced and certified trainers",
+    "Real-time projects & live practice",
+    "Career guidance & placement assistance",
+    "Affordable course fees",
+    "Supportive learning environment"
   ];
 
   return (
-    <>
-      <section className="hero">
+    <div style={{ backgroundColor: '#F2F7FF', position: 'relative' }}>
+
+      <section className="hero" style={{ paddingTop: '160px', paddingBottom: '120px' }}>
         <div className="hero-bg-grid"></div>
+        <div className="container" style={{ maxWidth: '1200px' }}>
+          <motion.div
+            initial="hidden"
+            animate="visible"
+            variants={containerVariants}
+            className="grid lg:grid-cols-2 gap-12 items-center"
+          >
+            {/* Left Content */}
+            <div style={{ textAlign: 'left', zIndex: 10 }}>
+              <motion.div className="rating-badge" variants={itemVariants} style={{ marginBottom: '32px', display: 'inline-flex' }}>
+                <span className="stars">
+                  <Star size={14} fill="#FFB800" color="#FFB800" />
+                  <Star size={14} fill="#FFB800" color="#FFB800" />
+                  <Star size={14} fill="#FFB800" color="#FFB800" />
+                  <Star size={14} fill="#FFB800" color="#FFB800" />
+                  <Star size={14} fill="#FFB800" color="#FFB800" />
+                </span>
+                <span>Best Training Institute in Kottakkal</span>
+              </motion.div>
 
-        {/* Left Hero Image Container */}
-        <motion.div
-          className="hero-img-container hero-img-left"
-          initial="hidden"
-          animate="visible"
-          variants={imageVariants}
-        >
-          <div className="hero-img-bg bg-[#FFF0E8]"></div>
-          <img
-            src="https://framerusercontent.com/images/4wat1wJFOMZsUFXZIgWayB7eC1o.jpg"
-            alt="Students looking at laptop"
-            className="hero-img-masked mask-left"
-          />
-        </motion.div>
+              <motion.h1 className="heading-xl" variants={itemVariants} style={{ fontSize: 'clamp(48px, 6vw, 72px)', lineHeight: '1.05', marginBottom: '24px' }}>
+                Learn Skills.<br />
+                Build <span className="serif-italic text-primary">Careers.</span> <br />
+                Shape Your <span className="serif-italic text-primary">Future.</span>
+              </motion.h1>
 
-        {/* Right Hero Image Container */}
-        <motion.div
-          className="hero-img-container hero-img-right"
-          initial="hidden"
-          animate="visible"
-          variants={imageVariants}
-        >
-          <div className="hero-img-bg bg-[#E7F0FF]"></div>
-          <img
-            src="https://framerusercontent.com/images/2Egur2fNYRGPeQKUmUX2PoOqxM.png"
-            alt="Students collaborating"
-            className="hero-img-masked mask-right"
-          />
-        </motion.div>
+              <motion.p className="text-secondary" style={{ fontSize: '20px', lineHeight: '1.6', maxWidth: '560px', marginBottom: '40px' }} variants={itemVariants}>
+                Be Campus Academy is a leading training institute in Kottakkal, offering career-focused professional courses aligned with today’s industry requirements.
+              </motion.p>
 
-        <motion.div
-          className="container hero-content"
-          initial="hidden"
-          animate="visible"
-          variants={containerVariants}
-        >
-          <motion.div className="rating-badge" variants={itemVariants}>
-            <div className="stars">
-              <Star size={16} fill="currentColor" />
-              <Star size={16} fill="currentColor" />
-              <Star size={16} fill="currentColor" />
-              <Star size={16} fill="currentColor" />
-              <Star size={16} fill="currentColor" />
+              <motion.div style={{ display: 'flex', gap: '16px', flexWrap: 'wrap' }} variants={itemVariants}>
+                <Link href="/courses" className="btn-primary group" style={{ fontSize: '16px', padding: '16px 36px', borderRadius: '100px' }}>
+                  Explore Courses <ArrowUpRight className="arrow" size={20} />
+                </Link>
+                <button
+                  onClick={() => setShowBrochureModal(true)}
+                  className="bg-white text-slate-800 border border-slate-200 hover:border-primary hover:text-white hover:bg-primary shadow-sm px-7 py-3 rounded-full flex items-center gap-2 font-semibold transition-all duration-300 hover:-translate-y-1 hover:shadow-lg hover:shadow-primary/20"
+                  style={{ fontSize: '15px' }}
+                >
+                  Download Brochure <FileText size={18} />
+                </button>
+              </motion.div>
             </div>
-            <span>4.9 (15,008)</span>
-          </motion.div>
 
-          <motion.h1 className="heading-xl" variants={itemVariants}>
-            Unlock Your Potential<br />
-            <span className="serif-italic">With New Skills</span>
-          </motion.h1>
+            {/* Right Content - Image */}
+            <motion.div
+              initial={{ opacity: 0, x: 50 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 1, delay: 0.4 }}
+              style={{ position: 'relative', width: '100%', maxWidth: '600px', marginInline: 'auto', zIndex: 10 }}
+            >
+              <div style={{
+                position: 'absolute',
+                inset: '-20px',
+                background: 'linear-gradient(180deg, rgba(225, 29, 72, 0.1) 0%, rgba(255, 255, 255, 0) 100%)',
+                borderRadius: '40px',
+                zIndex: -1,
+                transform: 'rotate(2deg)'
+              }}></div>
 
-          <motion.p variants={itemVariants}>
-            Unlock a world of opportunities and take control of your future by mastering new skills that empower you to achieve your goals.
-          </motion.p>
+              <img
+                src="/hero.png"
+                alt="Be Campus Training"
+                style={{ width: '100%', borderRadius: '32px', boxShadow: '0 30px 60px rgba(0,0,0,0.12)', border: '8px solid white', objectFit: 'cover' }}
+              />
 
-          <motion.div variants={itemVariants}>
-            <Link href="/courses" className="btn-primary group" style={{ fontSize: '18px', padding: '16px 36px', height: '60px' }}>
-              Explore Courses <ArrowUpRight className="transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1" size={24} />
-            </Link>
-          </motion.div>
-        </motion.div>
-      </section>
+              {/* Floating Badges */}
+              <motion.div
+                animate={{ y: [0, -15, 0] }}
+                transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+                style={{
+                  position: 'absolute',
+                  top: '15%',
+                  left: '-10%',
+                  background: 'white',
+                  padding: '16px 24px',
+                  borderRadius: '16px',
+                  boxShadow: '0 10px 30px rgba(0,0,0,0.08)',
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '12px',
+                  zIndex: 20
+                }}
+              >
+                <div style={{ width: '32px', height: '32px', borderRadius: '8px', background: 'rgba(22, 163, 74, 0.1)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#16a34a' }}>
+                  <Star size={16} fill="currentColor" />
+                </div>
+                <div style={{ fontWeight: '700', fontSize: '14px', whiteSpace: 'nowrap' }}>Top Rated Academy</div>
+              </motion.div>
 
-      {/* Partners Banner */}
-      <section className="container">
-        <motion.div
-          initial="hidden" whileInView="visible" viewport={{ once: true }} variants={containerVariants}
-        >
-          <motion.p variants={itemVariants} style={{ textAlign: 'center', fontWeight: '600', marginBottom: '24px' }}>Our Valued Partners</motion.p>
-          <div className="partners-banner-wrapper">
-            <motion.div className="partners-banner" variants={itemVariants}>
-              {[...partners, ...partners, ...partners].map((src, i) => (
-                <img key={i} src={src} alt="partner logo" />
-              ))}
+              <motion.div
+                animate={{ y: [0, 15, 0] }}
+                transition={{ duration: 4, repeat: Infinity, ease: "easeInOut", delay: 1 }}
+                style={{
+                  position: 'absolute',
+                  bottom: '15%',
+                  right: '-10%',
+                  background: 'white',
+                  padding: '16px 24px',
+                  borderRadius: '16px',
+                  boxShadow: '0 10px 30px rgba(0,0,0,0.08)',
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '12px',
+                  zIndex: 20
+                }}
+              >
+                <div style={{ width: '32px', height: '32px', borderRadius: '8px', background: 'rgba(225, 29, 72, 0.1)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'var(--primary)' }}>
+                  <Rocket size={16} />
+                </div>
+                <div style={{ fontWeight: '700', fontSize: '14px', whiteSpace: 'nowrap' }}>100% Placements</div>
+              </motion.div>
             </motion.div>
-          </div>
-        </motion.div>
+          </motion.div>
+        </div>
       </section>
 
-      {/* Why Choose Learnly */}
+      {/* Why Us Section */}
+      <section className="section-padding" style={{ backgroundColor: 'white' }}>
+        <div className="container">
+          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '80px', alignItems: 'center' }}>
+            <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={containerVariants}>
+              <motion.h2 className="heading-lg" variants={itemVariants} style={{ marginBottom: '24px' }}>
+                Why Do You Want to <span className="serif-italic">Join Us?</span>
+              </motion.h2>
+              <motion.p className="text-secondary" style={{ marginBottom: '40px', fontSize: '18px' }} variants={itemVariants}>
+                Choosing the right training institute plays a key role in shaping your future. Here’s why students trust Be Campus Academy, Kottakkal:
+              </motion.p>
+              <div style={{ display: 'grid', gap: '16px' }}>
+                {whyJoin.map((item, i) => (
+                  <motion.div key={i} style={{ display: 'flex', alignItems: 'center', gap: '12px' }} variants={itemVariants}>
+                    <div style={{ color: 'var(--primary)', flexShrink: 0 }}>
+                      <CheckCircle2 size={24} />
+                    </div>
+                    <span style={{ fontSize: '18px', fontWeight: '500' }}>{item}</span>
+                  </motion.div>
+                ))}
+              </div>
+              <motion.p style={{ marginTop: '32px', fontWeight: '700', color: 'var(--primary)', fontSize: '20px' }} variants={itemVariants}>
+                👉 We don’t just teach — we prepare you for real careers.
+              </motion.p>
+            </motion.div>
+            <div className="card" style={{ padding: '0', overflow: 'hidden', height: '100%', minHeight: '500px' }}>
+              <img src="https://framerusercontent.com/images/WiU5lbahsjWy5BCMq7zgElUv9aE.png" alt="Training" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Courses Section */}
       <section className="section-padding">
         <div className="container">
           <motion.div style={{ textAlign: 'center', marginBottom: '80px' }} initial="hidden" whileInView="visible" viewport={{ once: true }} variants={containerVariants}>
             <motion.h2 className="heading-lg" variants={itemVariants}>
-              Why Choose <span className="serif-italic">learnly</span>
+              Our Professional <span className="serif-italic">Courses</span>
             </motion.h2>
+            <motion.p className="text-secondary" style={{ marginTop: '20px', maxWidth: '600px', marginInline: 'auto' }} variants={itemVariants}>
+              We offer advanced diploma programs designed for today’s job market across Digital Marketing, Design, and Web Development.
+            </motion.p>
           </motion.div>
 
-          <motion.div className="grid-3" initial="hidden" whileInView="visible" viewport={{ once: true }} variants={containerVariants}>
-            <motion.div className="card" style={{ padding: '40px', textAlign: 'center', alignItems: 'center' }} variants={itemVariants}>
-              <img src="https://framerusercontent.com/images/QGd4zkOzeFPcLhxGYrl6BQDVy0.svg" alt="icon" style={{ width: '64px', marginBottom: '24px' }} />
-              <h3 className="heading-md" style={{ marginBottom: '16px' }}>4k+ hours videos</h3>
-              <p className="text-secondary">Hours of meticulously designed courses to help you achieve your goals and master modern skills effectively.</p>
-            </motion.div>
-
-            <motion.div className="card" style={{ padding: '40px', textAlign: 'center', alignItems: 'center' }} variants={itemVariants}>
-              <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '24px' }}>
-                <img src="https://framerusercontent.com/images/TytWPjLDhqtDYn7NeclLy1PWMs.jpg" style={{ width: '48px', height: '48px', borderRadius: '50%', border: '3px solid white', zIndex: 3 }} alt="user" />
-                <img src="https://framerusercontent.com/images/TytWPjLDhqtDYn7NeclLy1PWMs.jpg" style={{ width: '48px', height: '48px', borderRadius: '50%', border: '3px solid white', marginLeft: '-16px', zIndex: 2 }} alt="user" />
-                <img src="https://framerusercontent.com/images/TytWPjLDhqtDYn7NeclLy1PWMs.jpg" style={{ width: '48px', height: '48px', borderRadius: '50%', border: '3px solid white', marginLeft: '-16px', zIndex: 1 }} alt="user" />
-              </div>
-              <h3 className="heading-md" style={{ marginBottom: '16px' }}>A Great Community</h3>
-              <p className="text-secondary">We value our global community's support to learn together, network, and excel in an ever growing market.</p>
-            </motion.div>
-
-            <motion.div className="card" style={{ padding: '40px', textAlign: 'center', alignItems: 'center' }} variants={itemVariants}>
-              <img src="https://framerusercontent.com/images/WiU5lbahsjWy5BCMq7zgElUv9aE.png" alt="Learn by doing" style={{ width: '80px', height: '80px', objectFit: 'cover', marginBottom: '24px' }} />
-              <h3 className="heading-md" style={{ marginBottom: '16px' }}>Learn-by-Doing</h3>
-              <p className="text-secondary">Interactive lessons that encourage you to apply concepts immediately, reinforcing practical real-world skills.</p>
-            </motion.div>
-          </motion.div>
-        </div>
-      </section>
-
-      <section className="section-padding bg-white">
-        <div className="container">
-          <motion.div style={{ textAlign: 'center', marginBottom: '80px' }} initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={containerVariants}>
-            <motion.h2 className="heading-lg" variants={itemVariants}>
-              Our New <span className="serif-italic">Courses</span>
-            </motion.h2>
-          </motion.div>
-
-          <motion.div className="grid-3" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={containerVariants}>
+          <div className="grid-3">
             {courses.map((course, i) => (
-              <motion.div key={i} className="card" variants={itemVariants} style={{ padding: 0 }}>
+              <motion.div key={i} className="card" style={{ padding: 0 }} initial="hidden" whileInView="visible" viewport={{ once: true }} variants={itemVariants}>
                 <div className="course-card-img-wrapper">
-                  <div
-                    className="course-card-img"
-                    style={{ backgroundImage: `url(${course.image})` }}
-                  >
+                  <div className="course-card-img" style={{ backgroundImage: `url(${course.image})` }}>
                     <div className="course-card-pill">{course.level}</div>
                   </div>
                 </div>
-                <div style={{ padding: '24px', flex: 1, display: 'flex', flexDirection: 'column' }}>
-                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '16px' }}>
-                    <div style={{ display: 'flex', alignItems: 'center', gap: '4px', fontSize: '14px', fontWeight: '600' }}>
-                      <Star size={16} fill="#FFB800" color="#FFB800" />
-                      <span>({course.rating})</span>
+                <div style={{ padding: '32px' }}>
+                  <h3 style={{ fontSize: '22px', fontWeight: '700', marginBottom: '16px', lineHeight: '1.3' }}>{course.title}</h3>
+                  <p className="text-secondary" style={{ marginBottom: '24px', fontSize: '15px' }}>{course.description}</p>
+                  <div style={{ display: 'flex', gap: '16px', marginBottom: '32px', borderTop: '1px solid #eee', paddingTop: '24px' }}>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '8px', fontSize: '14px', color: 'var(--text-secondary)' }}>
+                      <Clock size={16} /> {course.duration}
                     </div>
-                    <span style={{ fontSize: '18px', fontWeight: '700', color: 'var(--text-primary)' }}>{course.price}</span>
-                  </div>
-                  <h3 className="heading-md" style={{ marginBottom: '8px', fontSize: '20px' }}>{course.title}</h3>
-                  <p className="text-secondary" style={{ fontSize: '14px', marginBottom: '20px' }}>By {course.author}</p>
-                  <div style={{ display: 'flex', gap: '16px', marginBottom: '24px', borderTop: '1px solid #f0f0f0', paddingTop: '16px' }}>
-                    <div style={{ display: 'flex', alignItems: 'center', gap: '6px', fontSize: '13px', color: 'var(--text-secondary)' }}>
-                      <Clock size={14} /> {course.duration}
-                    </div>
-                    <div style={{ display: 'flex', alignItems: 'center', gap: '6px', fontSize: '13px', color: 'var(--text-secondary)' }}>
-                      <BookOpen size={14} /> {course.lessons} Lessons
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '8px', fontSize: '14px', color: 'var(--text-secondary)' }}>
+                      <BookOpen size={16} /> {course.lessons}
                     </div>
                   </div>
-                  <div style={{ marginTop: 'auto' }}>
-                    <Link href={`/courses/${course.title.toLowerCase().replace(/ /g, '-')}`} className="btn-card">
-                      View Course
-                    </Link>
-                  </div>
+                  <Link href="/courses" className="btn-card">
+                    Course Details
+                  </Link>
                 </div>
               </motion.div>
             ))}
-          </motion.div>
+          </div>
+        </div>
+      </section>
 
-          <motion.div style={{ textAlign: 'center', marginTop: '80px' }} initial="hidden" whileInView="visible" viewport={{ once: true }} variants={containerVariants}>
-            <motion.div variants={itemVariants}>
-              <Link href="/courses" className="btn-primary group" style={{ padding: '14px 32px' }}>
-                All Courses <ArrowUpRight className="transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1" size={20} />
-              </Link>
-            </motion.div>
+      {/* Best Institute Content Section */}
+      <section className="section-padding bg-white">
+        <div className="container" style={{ maxWidth: '1000px' }}>
+          <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={containerVariants}>
+            <motion.h2 className="heading-lg" style={{ textAlign: 'center', marginBottom: '60px' }} variants={itemVariants}>
+              Why We Are the <span className="serif-italic">Best Training Institute</span> in Kottakkal
+            </motion.h2>
+            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '40px' }}>
+              <div className="card" style={{ padding: '32px' }}>
+                <ul style={{ display: 'grid', gap: '20px' }}>
+                  <li style={{ display: 'flex', gap: '12px' }}><CheckCircle2 className="text-primary" /> Updated curriculum as per industry trends</li>
+                  <li style={{ display: 'flex', gap: '12px' }}><CheckCircle2 className="text-primary" /> AI-integrated learning approach</li>
+                  <li style={{ display: 'flex', gap: '12px' }}><CheckCircle2 className="text-primary" /> Job-oriented training methodology</li>
+                </ul>
+              </div>
+              <div className="card" style={{ padding: '32px' }}>
+                <ul style={{ display: 'grid', gap: '20px' }}>
+                  <li style={{ display: 'flex', gap: '12px' }}><CheckCircle2 className="text-primary" /> One-to-one student support</li>
+                  <li style={{ display: 'flex', gap: '12px' }}><CheckCircle2 className="text-primary" /> Internship & placement assistance</li>
+                  <li style={{ display: 'flex', gap: '12px' }}><CheckCircle2 className="text-primary" /> Trusted by students across Kottakkal</li>
+                </ul>
+              </div>
+            </div>
+            <motion.p style={{ textAlign: 'center', marginTop: '60px', fontSize: '24px', fontWeight: '700' }} variants={itemVariants}>
+              🎓 Your success is our mission.
+            </motion.p>
           </motion.div>
         </div>
       </section>
 
-      {/* Discover Enroll & Learn */}
+      {/* Career Section */}
       <section className="section-padding">
         <div className="container">
-          <motion.div style={{ textAlign: 'center', marginBottom: '80px' }} initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={containerVariants}>
-            <motion.h2 className="heading-lg" variants={itemVariants}>
-              Discover, Enroll & <span className="serif-italic">Learn</span>
-            </motion.h2>
-          </motion.div>
-
-          <motion.div className="grid-3" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={containerVariants}>
-            {[
-              { step: '1', title: 'Explore All courses', desc: 'Browse our extensive catalog to find the perfect course tailored to your goals.' },
-              { step: '2', title: 'Purchase Desired Course', desc: 'Securely enroll in your chosen course to gain instant access to all learning materials.' },
-              { step: '3', title: 'Start Learning Anytime', desc: 'Learn at your own pace from anywhere in the world on any device.' }
-            ].map((item, i) => (
-              <motion.div key={i} className="card" style={{ padding: '48px 40px', textAlign: 'center', alignItems: 'center' }} variants={itemVariants}>
-                <div style={{
-                  width: '72px', height: '72px',
-                  backgroundColor: 'white',
-                  color: 'var(--primary)',
-                  border: '2px dashed var(--primary)',
-                  borderRadius: '50%',
-                  display: 'flex', alignItems: 'center', justifyContent: 'center',
-                  fontSize: '28px', fontWeight: '700',
-                  margin: '0 auto 32px'
-                }}>
-                  {item.step}
-                </div>
-                <h3 className="heading-md" style={{ marginBottom: '16px' }}>{item.title}</h3>
-                <p className="text-secondary" style={{ fontSize: '15px', lineHeight: '1.7' }}>{item.desc}</p>
-              </motion.div>
-            ))}
-          </motion.div>
-        </div>
-      </section>
-
-      {/* Consistent Growth */}
-      <section className="section-padding bg-white">
-        <div className="container">
-          <motion.div className="split-2" initial="hidden" whileInView="visible" viewport={{ once: true }} variants={containerVariants}>
-            <motion.div variants={itemVariants} style={{ position: 'relative' }}>
-              <img src="https://framerusercontent.com/images/8136BY6iSEiQiFS0aGhF7iJslo.png" alt="student" style={{ width: '100%', maxWidth: '500px', margin: '0 auto', display: 'block' }} />
-            </motion.div>
-            <motion.div variants={itemVariants}>
-              <h2 className="heading-lg" style={{ marginBottom: '32px' }}>
-                Consistent Growth,<br />
-                <span className="serif-italic">Endless Possibilities</span>
+          <div className="cta-banner">
+            <div className="cta-banner-bg"></div>
+            <div className="cta-content">
+              <h2 className="heading-lg" style={{ marginBottom: '24px' }}>
+                Build Your Future with <br />
+                <span className="serif-italic">Certification & Recognition</span>
               </h2>
-              <p className="text-secondary" style={{ marginBottom: '40px', fontSize: '18px' }}>
-                Learn at your own pace from anywhere in the world on any device using our structured modules, and tap into our elite community network.
-              </p>
-
-              <div style={{ display: 'flex', flexWrap: 'wrap', gap: '40px' }}>
-                <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
-                  <div style={{ width: '56px', height: '56px', borderRadius: '50%', background: 'var(--background-main)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                    <img src="https://framerusercontent.com/images/xt7JeydtTZtxsHSGLIkA55gbSJQ.svg" alt="icon" style={{ width: '24px' }} />
-                  </div>
-                  <div>
-                    <h4 style={{ fontSize: '18px', fontWeight: '600' }}>Unlimited Resources</h4>
-                    <p className="text-secondary" style={{ fontSize: '14px' }}>For continuous learning</p>
-                  </div>
+              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '24px', marginBottom: '40px', width: '100%' }}>
+                <div style={{ background: 'rgba(255,255,255,0.1)', padding: '20px', borderRadius: '12px', backdropFilter: 'blur(10px)' }}>
+                  Industry-recognized certifications
                 </div>
-
-                <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
-                  <div style={{ width: '56px', height: '56px', borderRadius: '50%', background: 'var(--background-main)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                    <img src="https://framerusercontent.com/images/Hi7xgwLUVYIokxGc9UYi3dGSW0.svg" alt="icon" style={{ width: '24px' }} />
-                  </div>
-                  <div>
-                    <h4 style={{ fontSize: '18px', fontWeight: '600' }}>50+ Instructors</h4>
-                    <p className="text-secondary" style={{ fontSize: '14px' }}>Expert guided classes</p>
-                  </div>
+                <div style={{ background: 'rgba(255,255,255,0.1)', padding: '20px', borderRadius: '12px', backdropFilter: 'blur(10px)' }}>
+                  100% Placement assistance
+                </div>
+                <div style={{ background: 'rgba(255,255,255,0.1)', padding: '20px', borderRadius: '12px', backdropFilter: 'blur(10px)' }}>
+                  Internship & Live Projects
                 </div>
               </div>
-            </motion.div>
-          </motion.div>
+              <Link href="/contact" className="btn-primary" style={{ fontSize: '18px', padding: '16px 36px', borderRadius: '100px' }}>
+                Start Your Career Journey <ArrowUpRight className="arrow" />
+              </Link>
+            </div>
+          </div>
         </div>
       </section>
 
-      {/* Testimonials */}
-      <section className="section-padding bg-main">
-        <div className="container">
-          <motion.div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', marginBottom: '60px' }} initial="hidden" whileInView="visible" viewport={{ once: true }} variants={containerVariants}>
-            <motion.h2 className="heading-lg" variants={itemVariants}>
-              What Our <span className="serif-italic">Learners</span> Say
-            </motion.h2>
-            <motion.div variants={itemVariants} className="nav-links">
-              <Link href="/reviews" className="btn-secondary" style={{ background: 'white', border: 'none' }}>View More</Link>
+      {/* WhatsApp Button */}
+      <a
+        href="https://wa.me/91XXXXXXXXXX"
+        target="_blank"
+        rel="noopener noreferrer"
+        style={{
+          position: 'fixed',
+          bottom: '32px',
+          right: '32px',
+          backgroundColor: '#25D366',
+          color: 'white',
+          width: '60px',
+          height: '60px',
+          borderRadius: '50%',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          boxShadow: '0 8px 24px rgba(0,0,0,0.15)',
+          zIndex: 9999,
+          transition: 'transform 0.3s'
+        }}
+        onMouseEnter={(e) => e.currentTarget.style.transform = 'scale(1.1)'}
+        onMouseLeave={(e) => e.currentTarget.style.transform = 'scale(1)'}
+      >
+        <MessageCircle size={32} fill="currentColor" />
+      </a>
+
+      {/* Brochure Modal */}
+      <AnimatePresence>
+        {showBrochureModal && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            style={{
+              position: 'fixed',
+              inset: 0,
+              backgroundColor: 'rgba(0,0,0,0.6)',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              zIndex: 10000,
+              padding: '24px'
+            }}
+            onClick={() => setShowBrochureModal(false)}
+          >
+            <motion.div
+              initial={{ scale: 0.9, y: 20 }}
+              animate={{ scale: 1, y: 0 }}
+              exit={{ scale: 0.9, y: 20 }}
+              style={{
+                backgroundColor: 'white',
+                padding: '40px',
+                borderRadius: '24px',
+                maxWidth: '500px',
+                width: '100%',
+                position: 'relative'
+              }}
+              onClick={e => e.stopPropagation()}
+            >
+              <h2 className="heading-md" style={{ marginBottom: '12px' }}>Download Our Brochure</h2>
+              <p className="text-secondary" style={{ marginBottom: '24px' }}>Enter your details to receive the full course syllabus and details.</p>
+
+              <form style={{ display: 'grid', gap: '20px' }}>
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
+                  <label style={{ fontSize: '14px', fontWeight: '600' }}>Full Name</label>
+                  <input type="text" placeholder="Your Name" style={{ padding: '12px', borderRadius: '12px', border: '1px solid #ddd' }} />
+                </div>
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
+                  <label style={{ fontSize: '14px', fontWeight: '600' }}>Phone Number</label>
+                  <input type="tel" placeholder="Your WhatsApp Number" style={{ padding: '12px', borderRadius: '12px', border: '1px solid #ddd' }} />
+                </div>
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
+                  <label style={{ fontSize: '14px', fontWeight: '600' }}>Interested Course</label>
+                  <select style={{ padding: '12px', borderRadius: '12px', border: '1px solid #ddd' }}>
+                    <option>Digital Marketing</option>
+                    <option>Graphic Design</option>
+                    <option>Web Development</option>
+                    <option>Human Resources</option>
+                  </select>
+                </div>
+                <button type="submit" className="btn-primary" style={{ padding: '16px' }}>
+                  Download Now
+                </button>
+              </form>
             </motion.div>
           </motion.div>
+        )}
+      </AnimatePresence>
 
-          <motion.div className="grid-3" initial="hidden" whileInView="visible" viewport={{ once: true }} variants={containerVariants}>
-            {testimonials.map((test, i) => (
-              <motion.div key={i} className="card" style={{ padding: '40px' }} variants={itemVariants}>
-                <div className="stars" style={{ marginBottom: '24px' }}>
-                  <Star size={20} fill="#FFB800" color="#FFB800" />
-                  <Star size={20} fill="#FFB800" color="#FFB800" />
-                  <Star size={20} fill="#FFB800" color="#FFB800" />
-                  <Star size={20} fill="#FFB800" color="#FFB800" />
-                  <Star size={20} fill="#FFB800" color="#FFB800" />
-                </div>
-                <p style={{ fontSize: '16px', lineHeight: '1.6', marginBottom: '32px', flex: 1 }}>
-                  "{test.review}"
-                </p>
-                <div style={{ display: 'flex', alignItems: 'center', gap: '16px', borderTop: '1px solid var(--border-color)', paddingTop: '24px' }}>
-                  <img src={test.avatar} alt={test.name} style={{ width: '48px', height: '48px', borderRadius: '50%', objectFit: 'cover' }} />
-                  <div>
-                    <h4 style={{ fontWeight: '600', fontSize: '16px' }}>{test.name}</h4>
-                    <p className="text-secondary" style={{ fontSize: '14px' }}>{test.role}</p>
-                  </div>
-                </div>
-              </motion.div>
-            ))}
-          </motion.div>
-        </div>
-      </section>
-
-      {/* Bottom CTA Section */}
-      <section className="container">
-        <motion.div className="cta-banner" initial="hidden" whileInView="visible" viewport={{ once: true }} variants={containerVariants}>
-          <div className="cta-banner-bg"></div>
-
-          <motion.img
-            src="https://framerusercontent.com/images/rvUmqvCWSlGjZMuf11ul95crPU.png"
-            className="cta-img-left" alt="student"
-            variants={imageVariants}
-          />
-          <motion.img
-            src="https://framerusercontent.com/images/aCUQwg4vD3p2rcHSJkMfWYL15g.png"
-            className="cta-img-right" alt="student books"
-            variants={imageVariants}
-          />
-
-          <motion.div className="cta-content" variants={itemVariants}>
-            <h2 className="heading-xl" style={{ marginBottom: '24px', fontSize: 'clamp(32px, 5vw, 56px)' }}>
-              Unlock Your Learning <span className="serif-italic">Potential Today</span>
-            </h2>
-            <p className="text-secondary" style={{ marginBottom: '40px', fontSize: '18px' }}>
-              Join thousands of learners worldwide entirely unlocking their potential via our curated learning pathways.
-            </p>
-            <Link href="/courses" className="btn-primary group" style={{ padding: '16px 32px', fontSize: '18px' }}>
-              Explore Courses <ArrowUpRight className="transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1" size={20} />
-            </Link>
-          </motion.div>
-        </motion.div>
-      </section>
-    </>
+    </div>
   )
 }

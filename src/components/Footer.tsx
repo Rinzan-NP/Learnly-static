@@ -1,66 +1,77 @@
 import Link from 'next/link'
-import { Hexagon, Twitter, Facebook, Instagram, Linkedin } from 'lucide-react'
+import { Rocket, Facebook, Twitter, Instagram, Linkedin, Mail, Phone, MapPin } from 'lucide-react'
 
 export default function Footer() {
     return (
-        <footer className="footer" style={{ marginTop: '80px' }}>
+        <footer className="bg-white border-t border-gray-100 pt-20 pb-10">
             <div className="container">
-                <div className="footer-grid">
-                    <div className="footer-col">
-                        <Link href="/" className="logo" style={{ marginBottom: '24px' }}>
-                            <Hexagon className="logo-icon" fill="currentColor" />
-                            <span>Learnly</span>
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
+                    <div className="col-span-1 md:col-span-2 lg:col-span-1">
+                        <Link href="/" className="logo mb-4 relative w-[220px] h-[50px] block" style={{ display: 'block' }}>
+                            <img src="/logo.png" alt="Be Campus Academy" className="absolute h-[110px] w-auto max-w-none mix-blend-multiply object-contain -left-6 top-1/2 -translate-y-1/2" />
                         </Link>
-                        <p className="text-secondary" style={{ marginBottom: '24px', maxWidth: '300px' }}>
-                            Learnly is a modern Framer template for online courses, educators, and e-learning platforms.
+                        <p className="text-secondary mb-8 max-w-sm" style={{ marginTop: '10px' }}>
+                            Be Campus Academy is a leading training institute in Kottakkal, offering career-focused professional courses aligned with today’s industry requirements.
                         </p>
-                        <div style={{ display: 'flex', gap: '16px' }}>
-                            <a href="#" style={{ padding: '12px', borderRadius: '50%', border: '1px solid var(--border-color)' }}>
+                        <div className="flex gap-4">
+                            <a href="#" className="social-icon">
                                 <Facebook size={20} />
                             </a>
-                            <a href="#" style={{ padding: '12px', borderRadius: '50%', border: '1px solid var(--border-color)' }}>
-                                <Twitter size={20} />
-                            </a>
-                            <a href="#" style={{ padding: '12px', borderRadius: '50%', border: '1px solid var(--border-color)' }}>
+                            <a href="#" className="social-icon">
                                 <Instagram size={20} />
                             </a>
-                            <a href="#" style={{ padding: '12px', borderRadius: '50%', border: '1px solid var(--border-color)' }}>
+                            <a href="#" className="social-icon">
                                 <Linkedin size={20} />
                             </a>
                         </div>
                     </div>
-                    <div className="footer-col">
-                        <h4>Navigate</h4>
-                        <ul>
-                            <li><Link href="/">Home</Link></li>
+
+                    <div>
+                        <h4 className="font-bold text-lg mb-6">Our Courses</h4>
+                        <ul className="space-y-4 text-secondary">
+                            <li><Link href="/courses">Digital Marketing</Link></li>
+                            <li><Link href="/courses">Graphic Designing</Link></li>
+                            <li><Link href="/courses">Web Development</Link></li>
+                            <li><Link href="/courses">HR & Talent Management</Link></li>
+                        </ul>
+                    </div>
+
+                    <div>
+                        <h4 className="font-bold text-lg mb-6">Quick Links</h4>
+                        <ul className="space-y-4 text-secondary">
                             <li><Link href="/about">About Us</Link></li>
-                            <li><Link href="/courses">Courses</Link></li>
                             <li><Link href="/blog">Blog</Link></li>
+                            <li><Link href="/placements">Placements / Events</Link></li>
                             <li><Link href="/contact">Contact Us</Link></li>
+                            <li><Link href="/faqs">FAQs</Link></li>
                         </ul>
                     </div>
-                    <div className="footer-col">
-                        <h4>Company</h4>
-                        <ul>
-                            <li><Link href="/privacy-policy">Privacy Policy</Link></li>
-                            <li><Link href="/terms-and-conditions">Terms & Conditions</Link></li>
-                            <li><Link href="/faqs">FAQ</Link></li>
-                            <li><Link href="/reviews">Testimonials</Link></li>
-                            <li><Link href="/404">404 Page</Link></li>
-                        </ul>
-                    </div>
-                    <div className="footer-col">
-                        <h4>Contact Info</h4>
-                        <ul>
-                            <li>hello@learnly.com</li>
-                            <li>+1 (555) 000-0000</li>
-                            <li>123 Learning Ave, Suite 100<br />San Francisco, CA 94107</li>
+
+                    <div>
+                        <h4 className="font-bold text-lg mb-6">Get in Touch</h4>
+                        <ul className="space-y-4 text-secondary">
+                            <li className="flex items-start gap-3">
+                                <MapPin size={20} className="text-primary shrink-0" />
+                                <span>Be Campus Academy, Kottakkal, Malappuram, Kerala</span>
+                            </li>
+                            <li className="flex items-center gap-3">
+                                <Phone size={20} className="text-primary shrink-0" />
+                                <span>+91 XXXXX XXXXX</span>
+                            </li>
+                            <li className="flex items-center gap-3">
+                                <Mail size={20} className="text-primary shrink-0" />
+                                <span>info@becampusacademy.com</span>
+                            </li>
                         </ul>
                     </div>
                 </div>
-                <div className="footer-bottom">
-                    <p>© 2026 Learnly. All rights reserved.</p>
-                    <p>Made with ❤️ Remade in Next.js</p>
+
+                <div className="pt-8 border-t border-gray-100 flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-secondary">
+                    <p>© 2026 Be Campus Academy. All rights reserved.</p>
+                    <div className="flex gap-8">
+                        <Link href="/privacy-policy">Privacy Policy</Link>
+                        <Link href="/terms-and-conditions">Terms & Conditions</Link>
+                    </div>
                 </div>
             </div>
         </footer>

@@ -1,7 +1,7 @@
 "use client";
 
 import Link from 'next/link'
-import { ArrowUpRight, CheckCircle2, Heart, Lightbulb, Shield, Users } from 'lucide-react'
+import { ArrowUpRight, CheckCircle2, Heart, Lightbulb, Shield, Users, Target, Rocket } from 'lucide-react'
 import { motion } from 'framer-motion'
 
 const containerVariants: any = {
@@ -21,118 +21,71 @@ const itemVariants: any = {
 };
 
 export default function About() {
-    const stats = [
-        { label: "Learners Transformed", value: "15K+" },
-        { label: "Successful Courses", value: "200+" },
-        { label: "Experienced Mentors", value: "50+" },
-        { label: "Satisfaction Rate", value: "99%" }
-    ];
-
-    const values = [
-        {
-            title: "Innovative",
-            desc: "Experience hands-on learning that builds real-world skills and creativity, empowering your journey.",
-            icon: <Lightbulb size={32} className="text-accent" />
-        },
-        {
-            title: "Valuable",
-            desc: "Access a curated library of courses, tools, and materials to master skills and achieve your goals.",
-            icon: <Heart size={32} className="text-accent" />
-        },
-        {
-            title: "Transparent",
-            desc: "We embrace a global community of learners with openness & diversity, creating a space for growth.",
-            icon: <Shield size={32} className="text-accent" />
-        }
-    ];
-
     return (
-        <>
+        <div style={{ backgroundColor: '#F2F7FF', minHeight: '100vh' }}>
             <section className="hero">
                 <div className="hero-bg-grid"></div>
-                <motion.div
-                    className="container"
-                    initial="hidden"
-                    animate="visible"
-                    variants={containerVariants}
-                >
-                    <motion.div className="rating-badge" variants={itemVariants}>
-                        <span>Our Story</span>
+                <div className="container">
+                    <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}>
+                        <div className="rating-badge" style={{ marginInline: 'auto' }}>
+                            <span>Who We Are?</span>
+                        </div>
+                        <h1 className="heading-xl">About <span className="serif-italic">Be Campus Academy</span></h1>
+                        <p className="text-secondary" style={{ marginTop: '24px', maxWidth: '700px', marginInline: 'auto', fontSize: '18px' }}>
+                            Be Campus Academy is a career-focused professional training institute recognized as one of the Best Training Institutes in Kottakkal.
+                        </p>
                     </motion.div>
-
-                    <motion.h1 className="heading-xl" variants={itemVariants}>
-                        Our Passionate Team is Here<br />
-                        <span className="serif-italic">To Deliver Value to You</span>
-                    </motion.h1>
-
-                    <motion.p style={{ maxWidth: '700px', margin: '24px auto 0' }} variants={itemVariants}>
-                        Discover a world of knowledge, connect with expert instructors, and achieve your goals with our live, interactive learning experiences.
-                    </motion.p>
-                </motion.div>
+                </div>
             </section>
 
             <section className="section-padding bg-white">
                 <div className="container">
-                    <div className="split-2">
-                        <motion.div
-                            initial={{ opacity: 0, x: -50 }}
-                            whileInView={{ opacity: 1, x: 0 }}
-                            viewport={{ once: true }}
-                        >
-                            <img
-                                src="https://framerusercontent.com/images/EEFT5idD5Z7l17UKEyR1ls1NaWg.png"
-                                alt="Team working"
-                                style={{ width: '100%', borderRadius: '32px' }}
-                            />
-                        </motion.div>
-                        <motion.div
-                            initial={{ opacity: 0, x: 50 }}
-                            whileInView={{ opacity: 1, x: 0 }}
-                            viewport={{ once: true }}
-                        >
-                            <h2 className="heading-lg" style={{ marginBottom: '24px' }}>
-                                Empowering Learners for a<br />
-                                <span className="serif-italic">Brighter Future</span>
-                            </h2>
-                            <p className="text-secondary" style={{ marginBottom: '32px' }}>
-                                At Learnly, we empower individuals by unlocking their potential through quality education. We equip learners with tools, resources, and expertise to excel in their chosen fields.
+                    <div style={{ display: 'grid', gridTemplateColumns: '1.2fr 1fr', gap: '80px', alignItems: 'center' }}>
+                        <div>
+                            <h2 className="heading-lg" style={{ marginBottom: '32px' }}>Empowering Students with <br /><span className="serif-italic">Industry-Ready Skills</span></h2>
+                            <p className="text-secondary" style={{ fontSize: '18px', lineHeight: '1.8', marginBottom: '24px' }}>
+                                We are committed to empowering students with industry-ready skills, practical knowledge, and professional confidence to succeed in today’s competitive job market.
                             </p>
-                            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '24px' }}>
-                                <div>
-                                    <h3 className="heading-md" style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '12px' }}>
-                                        <CheckCircle2 color="#00A36C" size={20} /> Our Mission
-                                    </h3>
-                                    <p className="text-secondary" style={{ fontSize: '14px' }}>
-                                        To make education accessible and impactful, empowering individuals to achieve their dreams.
-                                    </p>
+                            <p className="text-secondary" style={{ fontSize: '18px', lineHeight: '1.8', marginBottom: '32px' }}>
+                                Our academy was established with a clear mission to bridge the gap between education and employment. We follow a learn–practice–perform model to ensure every student gains practical exposure.
+                            </p>
+
+                            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '32px' }}>
+                                <div className="card" style={{ padding: '32px' }}>
+                                    <Target className="text-primary mb-4" size={32} />
+                                    <h4 className="font-bold text-xl mb-2">Our Vision</h4>
+                                    <p className="text-secondary text-sm">To become the most trusted training institute in Kottakkal, producing skilled professionals ready for real-world challenges.</p>
                                 </div>
-                                <div>
-                                    <h3 className="heading-md" style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '12px' }}>
-                                        <CheckCircle2 color="#00A36C" size={20} /> Our Vision
-                                    </h3>
-                                    <p className="text-secondary" style={{ fontSize: '14px' }}>
-                                        To be a global leader in education, fostering innovation, collaboration, and excellence.
-                                    </p>
+                                <div className="card" style={{ padding: '32px' }}>
+                                    <Rocket className="text-primary mb-4" size={32} />
+                                    <h4 className="font-bold text-xl mb-2">Our Mission</h4>
+                                    <p className="text-secondary text-sm">To deliver high-quality, practical-oriented education and focus on skill development rather than theory alone.</p>
                                 </div>
                             </div>
-                        </motion.div>
+                        </div>
+                        <div className="card" style={{ padding: 0, overflow: 'hidden', height: '100%', minHeight: '600px' }}>
+                            <img src="https://framerusercontent.com/images/rvUmqvCWSlGjZMuf11ul95crPU.png" alt="Academy" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                        </div>
                     </div>
                 </div>
             </section>
 
-            <section className="section-padding" style={{ backgroundColor: '#F9FAFB' }}>
+            <section className="section-padding">
                 <div className="container">
-                    <div className="grid-3" style={{ textAlign: 'center' }}>
-                        {stats.map((stat, i) => (
-                            <motion.div
-                                key={i}
-                                initial={{ opacity: 0, y: 20 }}
-                                whileInView={{ opacity: 1, y: 0 }}
-                                viewport={{ once: true }}
-                                transition={{ delay: i * 0.1 }}
-                            >
-                                <h3 className="heading-xl" style={{ color: 'var(--primary)', marginBottom: '8px' }}>{stat.value}</h3>
-                                <p className="text-secondary" style={{ fontWeight: '500' }}>{stat.label}</p>
+                    <h2 className="heading-lg" style={{ textAlign: 'center', marginBottom: '60px' }}>What Makes Us <span className="serif-italic">Different?</span></h2>
+                    <div className="grid-3" style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))' }}>
+                        {[
+                            { title: "Practical Focus", desc: "Hands-on training with real-time projects and case studies." },
+                            { title: "AI-Integrated", desc: "Modern curriculum incorporating AI tools into different workflows." },
+                            { title: "Expert Mentors", desc: "Learn from trainers who have extensive industry experience." },
+                            { title: "Placement Support", desc: "100% placement assistance and interview preparation." },
+                            { title: "One-to-One Attention", desc: "Individual student support for better learning outcomes." },
+                            { title: "Affordable Fees", desc: "Transparent and budget-friendly fee structure for everyone." }
+                        ].map((item, i) => (
+                            <motion.div key={i} className="card" style={{ padding: '40px' }} whileHover={{ y: -10 }} transition={{ duration: 0.3 }}>
+                                <CheckCircle2 className="text-primary mb-4" size={28} />
+                                <h3 className="font-bold text-xl mb-4">{item.title}</h3>
+                                <p className="text-secondary">{item.desc}</p>
                             </motion.div>
                         ))}
                     </div>
@@ -140,29 +93,12 @@ export default function About() {
             </section>
 
             <section className="section-padding bg-white">
-                <div className="container">
-                    <div style={{ textAlign: 'center', marginBottom: '60px' }}>
-                        <h2 className="heading-lg">
-                            Learnly Core <span className="serif-italic">Values</span>
-                        </h2>
-                        <p className="text-secondary" style={{ marginTop: '16px' }}>
-                            We are guided by a set of core principles that drive our commitment to excellence.
-                        </p>
-                    </div>
-                    <div className="grid-3">
-                        {values.map((val, i) => (
-                            <motion.div
-                                key={i}
-                                className="card"
-                                style={{ padding: '40px', textAlign: 'center', alignItems: 'center' }}
-                                whileHover={{ y: -5 }}
-                            >
-                                <div style={{ marginBottom: '24px', padding: '16px', borderRadius: '16px', backgroundColor: '#FFF0EB' }}>
-                                    {val.icon}
-                                </div>
-                                <h3 className="heading-md" style={{ marginBottom: '16px' }}>{val.title}</h3>
-                                <p className="text-secondary">{val.desc}</p>
-                            </motion.div>
+                <div className="container" style={{ maxWidth: '800px', textAlign: 'center' }}>
+                    <h2 className="heading-md" style={{ marginBottom: '32px' }}>Who Can Join Us?</h2>
+                    <p className="text-secondary mb-12" style={{ fontSize: '18px' }}>No prior technical knowledge required. We welcome everyone passionate about learning.</p>
+                    <div style={{ display: 'flex', flexWrap: 'wrap', gap: '16px', justifyContent: 'center' }}>
+                        {["Students after Plus Two/Degree", "Freshers starting careers", "Working professionals", "Entrepreneurs", "Freelancers"].map((tag, i) => (
+                            <span key={i} style={{ background: '#F2F7FF', padding: '12px 24px', borderRadius: '100px', fontWeight: '600', color: 'var(--text-primary)' }}>{tag}</span>
                         ))}
                     </div>
                 </div>
@@ -173,18 +109,18 @@ export default function About() {
                     <div className="cta-banner-bg"></div>
                     <div className="cta-content">
                         <h2 className="heading-lg" style={{ marginBottom: '24px' }}>
-                            Unlock Your Learning<br />
-                            <span className="serif-italic">Potential Today</span>
+                            Your Career Journey <br />
+                            <span className="serif-italic">Starts Here</span>
                         </h2>
                         <p className="text-secondary" style={{ marginBottom: '40px' }}>
-                            Join thousands of learners around the world who are advancing their careers with our expertly crafted courses and supportive community.
+                            If you are looking for the Best Training Institute in Kottakkal to build your future with confidence, Be Campus Academy is the right choice.
                         </p>
-                        <Link href="/courses" className="btn-primary group" style={{ fontSize: '18px', padding: '16px 36px' }}>
-                            Explore Courses <ArrowUpRight className="transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1" size={24} />
+                        <Link href="/contact" className="btn-primary group" style={{ fontSize: '18px', padding: '16px 36px' }}>
+                            Contact Us Now <ArrowUpRight className="transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1" />
                         </Link>
                     </div>
                 </div>
             </section>
-        </>
+        </div>
     )
 }
